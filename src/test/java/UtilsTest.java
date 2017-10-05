@@ -10,7 +10,7 @@ public class UtilsTest {
     private Utils ut = new Utils();
 
     @Test
-    public void getExtension() {
+    public void getExtension() throws Exception{
         assertEquals(".txt",ut.getExtension("abc.txt"));
     }
     //class: Utils
@@ -18,14 +18,14 @@ public class UtilsTest {
     //setExtension
 
     @Test
-    public void setExtension() {
+    public void setExtension()throws Exception {
         assertEquals("abc.txt",ut.setExtension("abc.png",".txt"));
     }
     //class: SoundEngine
     //handleSound
 
     @Test
-    public void checkInts() {
+    public void checkInts()throws Exception {
         assertFalse(ut.checkInts(10,10,10));
     }
     //Class: Utils
@@ -33,7 +33,7 @@ public class UtilsTest {
     //getColor
 
     @Test
-    public void removeExt() {
+    public void removeExt()throws Exception {
         assertEquals("abc",ut.removeExt("abc.txt"));
     }
     //Class: SoundEngine
@@ -41,12 +41,12 @@ public class UtilsTest {
     //getLastSubSound()
 
     @Test
-    public void getColor() {
+    public void getColor() throws Exception{
         assertNotNull(ut.getColor("This is a junit test",null));
     }
 
     @Test
-    public void checkColor(){
+    public void checkColor()throws Exception{
         assertFalse(ut.checkColor(null));
     }
 }
