@@ -1,0 +1,26 @@
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\gui\VoteCellRenderer.java:3:1: sun.swing.DefaultLookup is internal proprietary API and may be removed in a future release[0m
+[0m[[0m[33mwarn[0m] [0m[0mimport sun.swing.DefaultLookup;[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\gui\VoteCellRenderer.java:35:1: sun.swing.DefaultLookup is internal proprietary API and may be removed in a future release[0m
+[0m[[0m[33mwarn[0m] [0m[0m            bg = DefaultLookup.getColor(this, ui, "List.dropCellBackground");[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\gui\VoteCellRenderer.java:36:1: sun.swing.DefaultLookup is internal proprietary API and may be removed in a future release[0m
+[0m[[0m[33mwarn[0m] [0m[0m            fg = DefaultLookup.getColor(this, ui, "List.dropCellForeground");[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\gui\VoteCellRenderer.java:83:1: sun.swing.DefaultLookup is internal proprietary API and may be removed in a future release[0m
+[0m[[0m[33mwarn[0m] [0m[0m                border = DefaultLookup.getBorder(this, ui, "List.focusSelectedCellHighlightBorder");[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\gui\VoteCellRenderer.java:87:1: sun.swing.DefaultLookup is internal proprietary API and may be removed in a future release[0m
+[0m[[0m[33mwarn[0m] [0m[0m                border = DefaultLookup.getBorder(this, ui, "List.focusCellHighlightBorder");[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\lib\jtattoo\com\jtattoo\plaf\DecorationHelper.java:72:1: non-varargs call of varargs method with inexact argument type for last parameter;[0m
+[0m[[0m[33mwarn[0m] [0m[0m  cast to java.lang.Class<?> for a varargs call[0m
+[0m[[0m[33mwarn[0m] [0m[0m  cast to java.lang.Class<?>[] for a non-varargs call and to suppress this warning[0m
+[0m[[0m[33mwarn[0m] [0m[0m                Method m = frame.getClass().getMethod("getExtendedState", null);[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\lib\jtattoo\com\jtattoo\plaf\JTattooUtilities.java:145:1: non-varargs call of varargs method with inexact argument type for last parameter;[0m
+[0m[[0m[33mwarn[0m] [0m[0m  cast to java.lang.Class<?> for a varargs call[0m
+[0m[[0m[33mwarn[0m] [0m[0m  cast to java.lang.Class<?>[] for a non-varargs call and to suppress this warning[0m
+[0m[[0m[33mwarn[0m] [0m[0m                Method m = window.getClass().getMethod("isActive", null);[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\lib\jtattoo\com\jtattoo\plaf\JTattooUtilities.java:146:1: non-varargs call of varargs method with inexact argument type for last parameter;[0m
+[0m[[0m[33mwarn[0m] [0m[0m  cast to java.lang.Object for a varargs call[0m
+[0m[[0m[33mwarn[0m] [0m[0m  cast to java.lang.Object[] for a non-varargs call and to suppress this warning[0m
+[0m[[0m[33mwarn[0m] [0m[0m                return (Boolean) m.invoke(window, null);[0m
+[0m[[0m[0minfo[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\lib\jtattoo\com\jtattoo\plaf\BaseTitlePane.java: Some input files use or override a deprecated API.[0m
+[0m[[0m[0minfo[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\lib\jtattoo\com\jtattoo\plaf\BaseTitlePane.java: Recompile with -Xlint:deprecation for details.[0m
+[0m[[0m[0minfo[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\lib\JSON\JSONObject.java: Some input files use unchecked or unsafe operations.[0m
+[0m[[0m[0minfo[0m] [0m[0mC:\Users\sanku\Desktop\cloudHW2\BT\Botnak\src\main\java\lib\JSON\JSONObject.java: Recompile with -Xlint:unchecked for details.[0m
