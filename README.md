@@ -33,14 +33,14 @@ Junit and other dependencies will be automatically added using gradle and sbt.
 7. `sbt jacoco` command produces the code coverage reports.    
 
 # Location of related items
-1. The junit tests are present on path `Botnak/src/test/java/` .
+1. The junit tests are present on path `sankul_rawat_hw2/src/test/java/` .
 2. build.sbt file is present in the root directory of the project.
-3. Code coverage reports (in HTML format) are contained in `Botnak/TestReports` directory.
-4. Code coverage reports (in text format) are contained in `Botnak/input` directory.
-5. The output of maximum coverage implementation is present in `Botnak/input` directory 
+3. Code coverage reports (in HTML format) are contained in `sankul_rawat_hw2/TestReports` directory.
+4. Code coverage reports (in text format) are contained in `sankul_rawat_hw2/input` directory.
+5. The output of maximum coverage implementation is present in `sankul_rawat_hw2/input` directory 
 (it overwrites the existing text file).
 6. The code for HTML format code coverage report parsing, maximum coverage implementation, 
-and Mapreduce is present in `Botnak/mapreduce/src` directory.
+and Mapreduce is present in `sankul_rawat_hw2/mapreduce/src` directory.
 
 #Implementation on Amazon EMR
 [Youtube video displaying the deployment and execution on Amazon EMR](https://youtu.be/9PxlI-Z-Qtw)
@@ -61,7 +61,7 @@ Algorithm: Greedy Maximum Coverage
 3.    pick the set that covers the maximum number of uncovered elements 
 4. end
 
-The implementation is present in `MaxCover.java`, at location `Botnak/mapreduce/src/MaxCover`.
+The implementation is present in `MaxCover.java`, at location `sankul_rawat_hw2/mapreduce/src/MaxCover`.
 
 ###Citations
 [Wikipedia article on Max Coverage](https://en.wikipedia.org/wiki/Maximum_coverage_problem)
