@@ -45,6 +45,9 @@ and Mapreduce is present in `Botnak/mapreduce/src` directory.
 #Implementation on Amazon EMR
 [Youtube video displaying the deployment and execution on Amazon EMR]()
 
+###Citation
+[How to Deploy Custom JAR on Amazon EMR](https://www.youtube.com/watch?v=qyRxq8YwZcU)
+
 #Explanation of Maximum Coverage Problem Implementation [Extra Credit Work]
 I use a polynomial time approximation greedy algorithm which a special case of 
 maximization of submodular functions with a cardinality constraint.
@@ -59,7 +62,7 @@ Algorithm: Greedy Maximum Coverage
 The implementation is present in `MaxCover.java`, at location `Botnak/mapreduce/src/MaxCover`.
 
 ###Citations
-[Wikipedia](https://en.wikipedia.org/wiki/Maximum_coverage_problem)
+[Wikipedia article on Max Coverage](https://en.wikipedia.org/wiki/Maximum_coverage_problem)
 
 [Design and Analysis of Algorithms, DUKE University Lectures](https://www.cs.duke.edu/courses/fall13/compsci530/notes/lec16.pdf)
 

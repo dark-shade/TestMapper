@@ -30,12 +30,9 @@ public class MaxCover {
 
             Set<String> coveredLines = new HashSet<>();
 
-            HashMap<String,String> testedLines = new HashMap<>();
-
             StringTokenizer itr = new StringTokenizer(full);
 
             String currentTest = null;
-            //Set<String> linesByTest = new HashSet<>();
             List<String> linesByTest = new ArrayList<>();
 
             while (itr.hasMoreTokens()) {
@@ -57,11 +54,13 @@ public class MaxCover {
             testCoverMap.put(currentTest, linesByTest);
 
             // for user input of number of tests to consider
-            Scanner sc = new Scanner(System.in);
+            //Scanner sc = new Scanner(System.in);
 
             // number of tests to consider
-            System.out.println("Enter number of tests to be considered:");
-            int noOfTestToConsider = sc.nextInt();
+            //System.out.println("Enter number of tests to be considered:");
+            //int noOfTestToConsider = sc.nextInt();
+
+            int noOfTestToConsider = 3;
 
             // check if user inserted a valid value
             if(noOfTestToConsider <= testCoverMap.size()){
