@@ -1,0 +1,1148 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Utils</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">util</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Utils (util)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Utils</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    5.9%
+  </span>
+  <span class="absValue">
+    (3/ 51)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    3.3%
+  </span>
+  <span class="absValue">
+    (13/ 398)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package util;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import gui.ChatPane;
+<i>4</i>&nbsp;import gui.CombinedChatPane;
+<i>5</i>&nbsp;import gui.forms.GUIMain;
+<i>6</i>&nbsp;import lib.pircbot.User;
+<i>7</i>&nbsp;import util.comm.Command;
+<i>8</i>&nbsp;import util.comm.ConsoleCommand;
+<i>9</i>&nbsp;import util.settings.Settings;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import javax.swing.*;
+<i>12</i>&nbsp;import javax.swing.text.SimpleAttributeSet;
+<i>13</i>&nbsp;import javax.swing.text.StyleConstants;
+<i>14</i>&nbsp;import javax.swing.text.html.HTML;
+<i>15</i>&nbsp;import java.awt.*;
+<i>16</i>&nbsp;import java.io.*;
+<i>17</i>&nbsp;import java.net.URI;
+<i>18</i>&nbsp;import java.net.URL;
+<i>19</i>&nbsp;import java.nio.charset.Charset;
+<i>20</i>&nbsp;import java.util.*;
+<i>21</i>&nbsp;import java.util.regex.Matcher;
+<i>22</i>&nbsp;import java.util.regex.Pattern;
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;/**
+<i>25</i>&nbsp; * Created with IntelliJ IDEA.
+<i>26</i>&nbsp; * User: Nick
+<i>27</i>&nbsp; * Date: 6/3/13
+<i>28</i>&nbsp; * Time: 7:46 PM
+<i>29</i>&nbsp; * &lt;p&gt;
+<i>30</i>&nbsp; * This class is used for helpful methods that perform helpful deeds
+<i>31</i>&nbsp; * elsewhere in the code.
+<i>32</i>&nbsp; */
+<b class="fc"><i>33</i>&nbsp;public class Utils {</b>
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    /**
+<i>36</i>&nbsp;     * Returns a random number from 0 to the specified.
+<i>37</i>&nbsp;     *
+<i>38</i>&nbsp;     * @param param The max number to choose.
+<i>39</i>&nbsp;     */
+<i>40</i>&nbsp;    public static int nextInt(int param) {
+<b class="nc"><i>41</i>&nbsp;        return random(0, param);</b>
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    /**
+<i>45</i>&nbsp;     * Calls the #getExtension(String) method using the file name of the file.
+<i>46</i>&nbsp;     *
+<i>47</i>&nbsp;     * @param f The file to get the extension of.
+<i>48</i>&nbsp;     * @return The extension of the file, or null if there is none.
+<i>49</i>&nbsp;     */
+<i>50</i>&nbsp;    public static String getExtension(File f) {
+<b class="nc"><i>51</i>&nbsp;        return getExtension(f.getName());</b>
+<i>52</i>&nbsp;    }
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    /**
+<i>55</i>&nbsp;     * Gets the extension of a file.
+<i>56</i>&nbsp;     *
+<i>57</i>&nbsp;     * @param fileName Name of the file to get the extension of.
+<i>58</i>&nbsp;     * @return The file&#39;s extension (ex: &quot;.png&quot; or &quot;.wav&quot;), or null if there is none.
+<i>59</i>&nbsp;     */
+<i>60</i>&nbsp;    public static String getExtension(String fileName) {
+<b class="fc"><i>61</i>&nbsp;        String ext = null;</b>
+<b class="fc"><i>62</i>&nbsp;        int i = fileName.lastIndexOf(&#39;.&#39;);</b>
+<b class="fc"><i>63</i>&nbsp;        int len = fileName.length();</b>
+<b class="fc"><i>64</i>&nbsp;        int after = len - i;</b>
+<b class="pc"><i>65</i>&nbsp;        if (i &gt; 0 &amp;&amp; (i &lt; len - 1) &amp;&amp; after &lt; 5) {//has to be near the end</b>
+<b class="fc"><i>66</i>&nbsp;            ext = fileName.substring(i).toLowerCase();</b>
+<i>67</i>&nbsp;        }
+<b class="fc"><i>68</i>&nbsp;        return ext;</b>
+<i>69</i>&nbsp;    }
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    /**
+<i>72</i>&nbsp;     * Sets the extension of a file to the specified extension.
+<i>73</i>&nbsp;     * &lt;p&gt;
+<i>74</i>&nbsp;     * This can also be used as an assurance that the extension of the
+<i>75</i>&nbsp;     * file is the specified extension.
+<i>76</i>&nbsp;     * &lt;p&gt;
+<i>77</i>&nbsp;     * It&#39;s expected that this method will be called before any file saving is
+<i>78</i>&nbsp;     * done.
+<i>79</i>&nbsp;     *
+<i>80</i>&nbsp;     * @param fileName  The name of the file to change the extension of.
+<i>81</i>&nbsp;     * @param extension The extension (ex: &quot;.png&quot; or &quot;.wav&quot;) for the file.
+<i>82</i>&nbsp;     * @return The filename with the new extension.
+<i>83</i>&nbsp;     */
+<i>84</i>&nbsp;    public static String setExtension(String fileName, String extension) {
+<b class="fc"><i>85</i>&nbsp;        String ext = getExtension(fileName);</b>
+<b class="pc"><i>86</i>&nbsp;        if (ext != null) {</b>
+<b class="pc"><i>87</i>&nbsp;            if (!ext.equalsIgnoreCase(extension)) {</b>
+<b class="fc"><i>88</i>&nbsp;                fileName = fileName.substring(0, fileName.indexOf(ext)) + extension;</b>
+<i>89</i>&nbsp;            }
+<i>90</i>&nbsp;        } else {
+<b class="nc"><i>91</i>&nbsp;            fileName = fileName + extension;</b>
+<i>92</i>&nbsp;        }
+<b class="fc"><i>93</i>&nbsp;        return fileName;</b>
+<i>94</i>&nbsp;    }
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    /**
+<i>97</i>&nbsp;     * Converts a font to string. Only really used in the Settings GUI.
+<i>98</i>&nbsp;     * (Font#toString() was too messy for me, and fuck making a wrapper class.
+<i>99</i>&nbsp;     *
+<i>100</i>&nbsp;     * @return The name, size, and style of the font.
+<i>101</i>&nbsp;     */
+<i>102</i>&nbsp;    public static String fontToString(Font f) {
+<b class="nc"><i>103</i>&nbsp;        String toRet = &quot;&quot;;</b>
+<b class="nc"><i>104</i>&nbsp;        if (f != null) {</b>
+<i>105</i>&nbsp;            String type;
+<b class="nc"><i>106</i>&nbsp;            if (f.isBold()) {</b>
+<b class="nc"><i>107</i>&nbsp;                type = f.isItalic() ? &quot;Bold Italic&quot; : &quot;Bold&quot;;</b>
+<i>108</i>&nbsp;            } else {
+<b class="nc"><i>109</i>&nbsp;                type = f.isItalic() ? &quot;Italic&quot; : &quot;Plain&quot;;</b>
+<i>110</i>&nbsp;            }
+<b class="nc"><i>111</i>&nbsp;            toRet = f.getName() + &quot;,&quot; + f.getSize() + &quot;,&quot; + type;</b>
+<i>112</i>&nbsp;        }
+<b class="nc"><i>113</i>&nbsp;        return toRet;</b>
+<i>114</i>&nbsp;    }
+<i>115</i>&nbsp;
+<i>116</i>&nbsp;    /**
+<i>117</i>&nbsp;     * Converts a formatted string (@see #fontToString()) into a font.
+<i>118</i>&nbsp;     *
+<i>119</i>&nbsp;     * @param fontString The string to be turned into a font.
+<i>120</i>&nbsp;     * @return The font.
+<i>121</i>&nbsp;     */
+<i>122</i>&nbsp;    public static Font stringToFont(String fontString) {
+<b class="nc"><i>123</i>&nbsp;        String[] toFont = fontString.substring(fontString.indexOf(&#39;[&#39;) + 1, fontString.length() - 1).split(&quot;,&quot;);</b>
+<b class="nc"><i>124</i>&nbsp;        Font f = new Font(&quot;Calibri&quot;, Font.PLAIN, 18);</b>
+<b class="nc"><i>125</i>&nbsp;        if (toFont.length == 4) {</b>
+<b class="nc"><i>126</i>&nbsp;            String name = &quot;Calibri&quot;;</b>
+<b class="nc"><i>127</i>&nbsp;            int size = 18;</b>
+<b class="nc"><i>128</i>&nbsp;            int type = Font.PLAIN;</b>
+<b class="nc"><i>129</i>&nbsp;            for (String keyValPair : toFont) {</b>
+<b class="nc"><i>130</i>&nbsp;                String[] split = keyValPair.split(&quot;=&quot;);</b>
+<b class="nc"><i>131</i>&nbsp;                String key = split[0];</b>
+<b class="nc"><i>132</i>&nbsp;                String val = split[1];</b>
+<b class="nc"><i>133</i>&nbsp;                switch (key) {</b>
+<i>134</i>&nbsp;                    case &quot;name&quot;:
+<b class="nc"><i>135</i>&nbsp;                        name = val;</b>
+<b class="nc"><i>136</i>&nbsp;                        break;</b>
+<i>137</i>&nbsp;                    case &quot;style&quot;:
+<b class="nc"><i>138</i>&nbsp;                        switch (val) {</b>
+<i>139</i>&nbsp;                            case &quot;plain&quot;:
+<b class="nc"><i>140</i>&nbsp;                                type = Font.PLAIN;</b>
+<b class="nc"><i>141</i>&nbsp;                                break;</b>
+<i>142</i>&nbsp;                            case &quot;italic&quot;:
+<b class="nc"><i>143</i>&nbsp;                                type = Font.ITALIC;</b>
+<b class="nc"><i>144</i>&nbsp;                                break;</b>
+<i>145</i>&nbsp;                            case &quot;bolditalic&quot;:
+<b class="nc"><i>146</i>&nbsp;                                type = Font.BOLD + Font.ITALIC;</b>
+<b class="nc"><i>147</i>&nbsp;                                break;</b>
+<i>148</i>&nbsp;                            case &quot;bold&quot;:
+<b class="nc"><i>149</i>&nbsp;                                type = Font.BOLD;</b>
+<b class="nc"><i>150</i>&nbsp;                                break;</b>
+<i>151</i>&nbsp;                            default:
+<b class="nc"><i>152</i>&nbsp;                                type = Font.PLAIN;</b>
+<i>153</i>&nbsp;                                break;
+<i>154</i>&nbsp;                        }
+<b class="nc"><i>155</i>&nbsp;                        break;</b>
+<i>156</i>&nbsp;                    case &quot;size&quot;:
+<i>157</i>&nbsp;                        try {
+<b class="nc"><i>158</i>&nbsp;                            size = Integer.parseInt(val);</b>
+<b class="nc"><i>159</i>&nbsp;                        } catch (Exception e) {</b>
+<b class="nc"><i>160</i>&nbsp;                            size = 18;</b>
+<b class="nc"><i>161</i>&nbsp;                        }</b>
+<b class="nc"><i>162</i>&nbsp;                        break;</b>
+<i>163</i>&nbsp;                    default:
+<i>164</i>&nbsp;                        break;
+<i>165</i>&nbsp;                }
+<i>166</i>&nbsp;            }
+<b class="nc"><i>167</i>&nbsp;            f = new Font(name, type, size);</b>
+<i>168</i>&nbsp;        }
+<b class="nc"><i>169</i>&nbsp;        return f;</b>
+<i>170</i>&nbsp;    }
+<i>171</i>&nbsp;
+<i>172</i>&nbsp;
+<i>173</i>&nbsp;    /**
+<i>174</i>&nbsp;     * Adds a single string to an array of strings, first checking to see if the array contains it.
+<i>175</i>&nbsp;     *
+<i>176</i>&nbsp;     * @param toAdd The string(s) to add to the array.
+<i>177</i>&nbsp;     * @param array The array to add the string to.
+<i>178</i>&nbsp;     * @return The array of Strings.
+<i>179</i>&nbsp;     */
+<i>180</i>&nbsp;    public static String[] addStringsToArray(String[] array, String... toAdd) {
+<b class="nc"><i>181</i>&nbsp;        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>182</i>&nbsp;        Collections.addAll(list, array);</b>
+<b class="nc"><i>183</i>&nbsp;        checkAndAdd(list, toAdd);</b>
+<b class="nc"><i>184</i>&nbsp;        return list.toArray(new String[list.size()]);</b>
+<i>185</i>&nbsp;    }
+<i>186</i>&nbsp;
+<i>187</i>&nbsp;    /**
+<i>188</i>&nbsp;     * Compares two arrays of Strings and adds the non-repeating ones to the same one.
+<i>189</i>&nbsp;     *
+<i>190</i>&nbsp;     * @param list  List of strings to compare to.
+<i>191</i>&nbsp;     * @param toAdd String(s) to add to the list.
+<i>192</i>&nbsp;     */
+<i>193</i>&nbsp;    public static void checkAndAdd(ArrayList&lt;String&gt; list, String... toAdd) {
+<b class="nc"><i>194</i>&nbsp;        for (String s : toAdd) {</b>
+<b class="nc"><i>195</i>&nbsp;            if (!list.contains(s)) {</b>
+<b class="nc"><i>196</i>&nbsp;                list.add(s);</b>
+<i>197</i>&nbsp;            }
+<i>198</i>&nbsp;        }
+<i>199</i>&nbsp;    }
+<i>200</i>&nbsp;
+<i>201</i>&nbsp;    /**
+<i>202</i>&nbsp;     * Checks individual files one by one like #areFilesGood(String...) and
+<i>203</i>&nbsp;     * returns the good and legitimate files.
+<i>204</i>&nbsp;     *
+<i>205</i>&nbsp;     * @param files The path(s) to the file(s) to check.
+<i>206</i>&nbsp;     * @return The array of paths to files that actually exist.
+<i>207</i>&nbsp;     * @see #areFilesGood(String...) for determining if files exist.
+<i>208</i>&nbsp;     */
+<i>209</i>&nbsp;    public static String[] checkFiles(String... files) {
+<b class="nc"><i>210</i>&nbsp;        ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>211</i>&nbsp;        for (String s : files) {</b>
+<b class="nc"><i>212</i>&nbsp;            if (areFilesGood(s)) {</b>
+<b class="nc"><i>213</i>&nbsp;                list.add(s);</b>
+<i>214</i>&nbsp;            }
+<i>215</i>&nbsp;        }
+<b class="nc"><i>216</i>&nbsp;        return list.toArray(new String[list.size()]);</b>
+<i>217</i>&nbsp;    }
+<i>218</i>&nbsp;
+<i>219</i>&nbsp;    /**
+<i>220</i>&nbsp;     * Checks to see if the file(s) is (are) actually existing and non-blank.
+<i>221</i>&nbsp;     *
+<i>222</i>&nbsp;     * @param files The path(s) to the file(s) to check.
+<i>223</i>&nbsp;     * @return true if (all) the file(s) exist(s)
+<i>224</i>&nbsp;     * @see #checkFiles(String...) For removing bad files and adding the others anyway.
+<i>225</i>&nbsp;     */
+<i>226</i>&nbsp;    public static boolean areFilesGood(String... files) {
+<b class="nc"><i>227</i>&nbsp;        int i = 0;</b>
+<b class="nc"><i>228</i>&nbsp;        for (String s : files) {</b>
+<b class="nc"><i>229</i>&nbsp;            File test = new File(s);</b>
+<b class="nc"><i>230</i>&nbsp;            if (test.exists() &amp;&amp; test.length() &gt; 0) i++;</b>
+<i>231</i>&nbsp;        }
+<b class="nc"><i>232</i>&nbsp;        return i == files.length;</b>
+<i>233</i>&nbsp;    }
+<i>234</i>&nbsp;
+<i>235</i>&nbsp;    /**
+<i>236</i>&nbsp;     * Logs the chat to a file.
+<i>237</i>&nbsp;     *
+<i>238</i>&nbsp;     * @param message The chat separated by newline characters.
+<i>239</i>&nbsp;     * @param channel The channel the chat was in.
+<i>240</i>&nbsp;     * @param type    The int that determines what the logger should do.
+<i>241</i>&nbsp;     *                0 = boot
+<i>242</i>&nbsp;     *                1 = append (clear chat)
+<i>243</i>&nbsp;     *                2 = shutdown
+<i>244</i>&nbsp;     */
+<i>245</i>&nbsp;    public static void logChat(String[] message, String channel, int type) {
+<b class="nc"><i>246</i>&nbsp;        if (channel.startsWith(&quot;#&quot;)) channel = channel.substring(1);</b>
+<i>247</i>&nbsp;        try {
+<b class="nc"><i>248</i>&nbsp;            PrintWriter out = new PrintWriter(new BufferedWriter(</b>
+<b class="nc"><i>249</i>&nbsp;                    new FileWriter(new File(Settings.logDir.getAbsolutePath() + File.separator + channel + &quot;.txt&quot;), true)));</b>
+<b class="nc"><i>250</i>&nbsp;            if (type == 0) {</b>
+<b class="nc"><i>251</i>&nbsp;                out.println(&quot;====================== &quot; + Settings.date + &quot; ======================&quot;);</b>
+<i>252</i>&nbsp;            }
+<b class="nc"><i>253</i>&nbsp;            if (message != null &amp;&amp; !(message.length == 0 || (message.length == 1 &amp;&amp; message[0].equalsIgnoreCase(&quot;&quot;)))) {</b>
+<b class="nc"><i>254</i>&nbsp;                for (String s : message) {</b>
+<b class="nc"><i>255</i>&nbsp;                    if (s != null &amp;&amp; !s.equals(&quot;&quot;) &amp;&amp; !s.equals(&quot;\n&quot;)) {</b>
+<b class="nc"><i>256</i>&nbsp;                        out.println(s);</b>
+<i>257</i>&nbsp;                    }
+<i>258</i>&nbsp;                }
+<i>259</i>&nbsp;            }
+<b class="nc"><i>260</i>&nbsp;            if (type == 2) {</b>
+<b class="nc"><i>261</i>&nbsp;                out.println(&quot;====================== End of &quot; + Settings.date + &quot; ======================&quot;);</b>
+<i>262</i>&nbsp;            }
+<b class="nc"><i>263</i>&nbsp;            out.close();</b>
+<b class="nc"><i>264</i>&nbsp;        } catch (IOException e) {</b>
+<b class="nc"><i>265</i>&nbsp;            GUIMain.log(e);</b>
+<b class="nc"><i>266</i>&nbsp;        }</b>
+<i>267</i>&nbsp;    }
+<i>268</i>&nbsp;
+<i>269</i>&nbsp;    /**
+<i>270</i>&nbsp;     * Removes the last file extension from a path.
+<i>271</i>&nbsp;     * &lt;p&gt;
+<i>272</i>&nbsp;     * Note that if the string contains multiple extensions, this will only remove the last one.
+<i>273</i>&nbsp;     * &lt;p&gt;
+<i>274</i>&nbsp;     * Ex: &quot;portal.png.exe.java&quot; becomes &quot;portal.png.exe&quot; after this method returns.
+<i>275</i>&nbsp;     *
+<i>276</i>&nbsp;     * @param s The path to a file, or the file name with its extension.
+<i>277</i>&nbsp;     * @return The file/path name without the extension.
+<i>278</i>&nbsp;     */
+<i>279</i>&nbsp;    public static String removeExt(String s) {
+<b class="nc"><i>280</i>&nbsp;        int pos = s.lastIndexOf(&quot;.&quot;);</b>
+<b class="nc"><i>281</i>&nbsp;        if (pos == -1) return s;</b>
+<b class="nc"><i>282</i>&nbsp;        return s.substring(0, pos);</b>
+<i>283</i>&nbsp;    }
+<i>284</i>&nbsp;
+<i>285</i>&nbsp;    /**
+<i>286</i>&nbsp;     * Checks to see if the input is IRC-worthy of printing.
+<i>287</i>&nbsp;     *
+<i>288</i>&nbsp;     * @param input The input in question.
+<i>289</i>&nbsp;     * @return The given input if it checks out, otherwise nothing.
+<i>290</i>&nbsp;     */
+<i>291</i>&nbsp;    public static String checkText(String input) {
+<b class="nc"><i>292</i>&nbsp;        input = input.trim();</b>
+<b class="nc"><i>293</i>&nbsp;        return !input.isEmpty() ? input : &quot;&quot;;</b>
+<i>294</i>&nbsp;    }
+<i>295</i>&nbsp;
+<i>296</i>&nbsp;    /**
+<i>297</i>&nbsp;     * Returns a number between a given minimum and maximum (exclusive).
+<i>298</i>&nbsp;     *
+<i>299</i>&nbsp;     * @param min The minimum number to generate on.
+<i>300</i>&nbsp;     * @param max The non-inclusive maximum number to generate on.
+<i>301</i>&nbsp;     * @return Some random number between the given numbers.
+<i>302</i>&nbsp;     */
+<i>303</i>&nbsp;    public static int random(int min, int max) {
+<b class="nc"><i>304</i>&nbsp;        return min + (max == min ? 0 : new Random().nextInt(max - min));</b>
+<i>305</i>&nbsp;    }
+<i>306</i>&nbsp;
+<i>307</i>&nbsp;    /**
+<i>308</i>&nbsp;     * Generates a color from the #hashCode() of any java.lang.Object.
+<i>309</i>&nbsp;     * &lt;p&gt;
+<i>310</i>&nbsp;     * Author - Dr_Kegel from Gocnak&#39;s stream.
+<i>311</i>&nbsp;     *
+<i>312</i>&nbsp;     * @param seed The Hashcode of the object you want dynamic color for.
+<i>313</i>&nbsp;     * @return The Color of the object&#39;s hash.
+<i>314</i>&nbsp;     */
+<i>315</i>&nbsp;    public static Color getColorFromHashcode(final int seed) {
+<i>316</i>&nbsp;        /* We do some bit hacks here
+<i>317</i>&nbsp;           hashCode has 32 bit, we use every bit as a random source */
+<b class="nc"><i>318</i>&nbsp;        final int HUE_BITS = 12, HUE_MASK = ((1 &lt;&lt; HUE_BITS) - 1);</b>
+<b class="nc"><i>319</i>&nbsp;        final int SATURATION_BITS = 8, SATURATION_MASK = ((1 &lt;&lt; SATURATION_BITS) - 1);</b>
+<b class="nc"><i>320</i>&nbsp;        final int BRIGHTNESS_BITS = 12, BRIGHTNESS_MASK = ((1 &lt;&lt; BRIGHTNESS_BITS) - 1);</b>
+<b class="nc"><i>321</i>&nbsp;        int t = seed;</b>
+<i>322</i>&nbsp;        /*
+<i>323</i>&nbsp;         * We want the full hue spectrum, that means all colors of the color
+<i>324</i>&nbsp;		 * circle
+<i>325</i>&nbsp;		 */
+<i>326</i>&nbsp;        /* [0 .. 1] */
+<b class="nc"><i>327</i>&nbsp;        final float h = (t &amp; HUE_MASK) / (float) HUE_MASK;</b>
+<b class="nc"><i>328</i>&nbsp;        t &gt;&gt;= HUE_BITS;</b>
+<b class="nc"><i>329</i>&nbsp;        final float s = (t &amp; SATURATION_MASK) / (float) SATURATION_MASK;</b>
+<b class="nc"><i>330</i>&nbsp;        t &gt;&gt;= SATURATION_BITS;</b>
+<b class="nc"><i>331</i>&nbsp;        final float b = (t &amp; BRIGHTNESS_MASK) / (float) BRIGHTNESS_MASK;</b>
+<i>332</i>&nbsp;        /* some tweaks that nor black nor white can be reached */
+<i>333</i>&nbsp;        /* at the moment h,s,b are in the range of [0 .. 1) */
+<i>334</i>&nbsp;        /* For s and b this is restricted to [0.75 .. 1) at the moment. */
+<b class="nc"><i>335</i>&nbsp;        return Color.getHSBColor(h, s * 0.25f + 0.75f, b * 0.25f + 0.75f);</b>
+<i>336</i>&nbsp;    }
+<i>337</i>&nbsp;
+<i>338</i>&nbsp;    /**
+<i>339</i>&nbsp;     * Returns the SimpleAttributeSet for a specified URL.
+<i>340</i>&nbsp;     *
+<i>341</i>&nbsp;     * @param URL The link to make into a URL.
+<i>342</i>&nbsp;     * @return The SimpleAttributeSet of the URL.
+<i>343</i>&nbsp;     */
+<i>344</i>&nbsp;    public static SimpleAttributeSet URLStyle(String URL) {
+<b class="nc"><i>345</i>&nbsp;        SimpleAttributeSet attrs = new SimpleAttributeSet();</b>
+<b class="nc"><i>346</i>&nbsp;        StyleConstants.setForeground(attrs, new Color(43, 162, 235));</b>
+<b class="nc"><i>347</i>&nbsp;        StyleConstants.setFontFamily(attrs, Settings.font.getValue().getFamily());</b>
+<b class="nc"><i>348</i>&nbsp;        StyleConstants.setFontSize(attrs, Settings.font.getValue().getSize());</b>
+<b class="nc"><i>349</i>&nbsp;        StyleConstants.setUnderline(attrs, true);</b>
+<b class="nc"><i>350</i>&nbsp;        attrs.addAttribute(HTML.Attribute.HREF, URL);</b>
+<b class="nc"><i>351</i>&nbsp;        return attrs;</b>
+<i>352</i>&nbsp;    }
+<i>353</i>&nbsp;
+<i>354</i>&nbsp;    /**
+<i>355</i>&nbsp;     * Credit: TDuva
+<i>356</i>&nbsp;     *
+<i>357</i>&nbsp;     * @param URL The URL to check
+<i>358</i>&nbsp;     * @return True if the URL can be formed, else false
+<i>359</i>&nbsp;     */
+<i>360</i>&nbsp;    public static boolean checkURL(String URL) {
+<i>361</i>&nbsp;        try {
+<b class="nc"><i>362</i>&nbsp;            new URI(URL);</b>
+<b class="nc"><i>363</i>&nbsp;        } catch (Exception ignored) {</b>
+<b class="nc"><i>364</i>&nbsp;            return false;</b>
+<b class="nc"><i>365</i>&nbsp;        }</b>
+<b class="nc"><i>366</i>&nbsp;        return true;</b>
+<i>367</i>&nbsp;    }
+<i>368</i>&nbsp;
+<i>369</i>&nbsp;    /**
+<i>370</i>&nbsp;     * Checks if the given integer is within the range of any of the key=value
+<i>371</i>&nbsp;     * pairs of the Map (inclusive).
+<i>372</i>&nbsp;     * &lt;p&gt;
+<i>373</i>&nbsp;     * Credit: TDuva
+<i>374</i>&nbsp;     *
+<i>375</i>&nbsp;     * @param i      The integer to check.
+<i>376</i>&nbsp;     * @param ranges The map of the ranges to check.
+<i>377</i>&nbsp;     * @return true if the given int is within the range set, else false
+<i>378</i>&nbsp;     */
+<i>379</i>&nbsp;    public static boolean inRanges(int i, Map&lt;Integer, Integer&gt; ranges) {
+<b class="nc"><i>380</i>&nbsp;        for (Map.Entry&lt;Integer, Integer&gt; range : ranges.entrySet()) {</b>
+<b class="nc"><i>381</i>&nbsp;            if (i &gt;= range.getKey() &amp;&amp; i &lt;= range.getValue()) {</b>
+<b class="nc"><i>382</i>&nbsp;                return true;</b>
+<i>383</i>&nbsp;            }
+<b class="nc"><i>384</i>&nbsp;        }</b>
+<b class="nc"><i>385</i>&nbsp;        return false;</b>
+<i>386</i>&nbsp;    }
+<i>387</i>&nbsp;
+<i>388</i>&nbsp;    /**
+<i>389</i>&nbsp;     * Converts a given int to the correct millis form, except for 0.
+<i>390</i>&nbsp;     *
+<i>391</i>&nbsp;     * @param given Integer to convert.
+<i>392</i>&nbsp;     * @return The correct Integer in milliseconds.
+<i>393</i>&nbsp;     */
+<i>394</i>&nbsp;    public static int handleInt(int given) {
+<b class="nc"><i>395</i>&nbsp;        if (given &lt; 1000 &amp;&amp; given &gt; 0) {// not in millis</b>
+<b class="nc"><i>396</i>&nbsp;            given = given * 1000; //convert to millis</b>
+<i>397</i>&nbsp;        }
+<b class="nc"><i>398</i>&nbsp;        return given;</b>
+<i>399</i>&nbsp;    }
+<i>400</i>&nbsp;
+<i>401</i>&nbsp;    /**
+<i>402</i>&nbsp;     * Gets a time (in seconds) from a parsable string.
+<i>403</i>&nbsp;     *
+<i>404</i>&nbsp;     * @param toParse The string to parse.
+<i>405</i>&nbsp;     * @return A time (in seconds) as an integer.
+<i>406</i>&nbsp;     */
+<i>407</i>&nbsp;    public static int getTime(String toParse) {
+<i>408</i>&nbsp;        int toRet;
+<b class="nc"><i>409</i>&nbsp;        if (toParse.contains(&quot;m&quot;)) {</b>
+<b class="nc"><i>410</i>&nbsp;            String toParseSub = toParse.substring(0, toParse.indexOf(&quot;m&quot;));</b>
+<i>411</i>&nbsp;            try {
+<b class="nc"><i>412</i>&nbsp;                toRet = Integer.parseInt(toParseSub) * 60;</b>
+<b class="nc"><i>413</i>&nbsp;                if (toParse.contains(&quot;s&quot;)) {</b>
+<b class="nc"><i>414</i>&nbsp;                    toParseSub = toParse.substring(toParse.indexOf(&quot;m&quot;) + 1, toParse.indexOf(&quot;s&quot;));</b>
+<b class="nc"><i>415</i>&nbsp;                    toRet += Integer.parseInt(toParseSub);</b>
+<i>416</i>&nbsp;                }
+<b class="nc"><i>417</i>&nbsp;            } catch (Exception e) {</b>
+<b class="nc"><i>418</i>&nbsp;                toRet = -1;</b>
+<b class="nc"><i>419</i>&nbsp;            }</b>
+<i>420</i>&nbsp;
+<b class="nc"><i>421</i>&nbsp;        } else {</b>
+<b class="nc"><i>422</i>&nbsp;            if (toParse.contains(&quot;s&quot;)) {</b>
+<b class="nc"><i>423</i>&nbsp;                toParse = toParse.substring(0, toParse.indexOf(&#39;s&#39;));</b>
+<i>424</i>&nbsp;            }
+<i>425</i>&nbsp;            try {
+<b class="nc"><i>426</i>&nbsp;                toRet = Integer.parseInt(toParse);</b>
+<b class="nc"><i>427</i>&nbsp;            } catch (Exception e) {</b>
+<b class="nc"><i>428</i>&nbsp;                toRet = -1;</b>
+<b class="nc"><i>429</i>&nbsp;            }</b>
+<i>430</i>&nbsp;        }
+<b class="nc"><i>431</i>&nbsp;        return toRet;</b>
+<i>432</i>&nbsp;    }
+<i>433</i>&nbsp;
+<i>434</i>&nbsp;    /**
+<i>435</i>&nbsp;     * Adds a command to the command map.
+<i>436</i>&nbsp;     * &lt;p&gt;
+<i>437</i>&nbsp;     * To do this in chat, simply type !addcommand command message
+<i>438</i>&nbsp;     * More examples at http://bit.ly/1366RwM
+<i>439</i>&nbsp;     *
+<i>440</i>&nbsp;     * @param s The string from the chat.
+<i>441</i>&nbsp;     * @return true if added, false if fail
+<i>442</i>&nbsp;     */
+<i>443</i>&nbsp;    public static Response addCommands(String s) {
+<b class="nc"><i>444</i>&nbsp;        Response toReturn = new Response();</b>
+<b class="nc"><i>445</i>&nbsp;        String[] split = s.split(&quot; &quot;);</b>
+<b class="nc"><i>446</i>&nbsp;        if (GUIMain.commandSet != null) {</b>
+<i>447</i>&nbsp;            try {
+<b class="nc"><i>448</i>&nbsp;                String name = split[1];//name of the command, [0] is &quot;addcommand&quot;</b>
+<b class="nc"><i>449</i>&nbsp;                if (name.startsWith(&quot;!&quot;)) name = name.substring(1);</b>
+<b class="nc"><i>450</i>&nbsp;                if (getCommand(name) != null) {</b>
+<b class="nc"><i>451</i>&nbsp;                    toReturn.setResponseText(&quot;Failed to add command, !&quot; + name + &quot; already exists!&quot;);</b>
+<b class="nc"><i>452</i>&nbsp;                    return toReturn;</b>
+<i>453</i>&nbsp;                }
+<b class="nc"><i>454</i>&nbsp;                ArrayList&lt;String&gt; arguments = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i>455</i>&nbsp;                if (s.contains(&quot; | &quot;)) {//command with arguments</b>
+<b class="nc"><i>456</i>&nbsp;                    StringTokenizer st = new StringTokenizer(s.substring(0, s.indexOf(&quot; | &quot;)), &quot; &quot;);</b>
+<b class="nc"><i>457</i>&nbsp;                    while (st.hasMoreTokens()) {</b>
+<b class="nc"><i>458</i>&nbsp;                        String work = st.nextToken();</b>
+<b class="nc"><i>459</i>&nbsp;                        if (work.startsWith(&quot;%&quot;) &amp;&amp; work.endsWith(&quot;%&quot;)) {</b>
+<b class="nc"><i>460</i>&nbsp;                            arguments.add(work);</b>
+<i>461</i>&nbsp;                        }
+<b class="nc"><i>462</i>&nbsp;                    }</b>
+<i>463</i>&nbsp;                }
+<i>464</i>&nbsp;                int bingo;
+<b class="nc"><i>465</i>&nbsp;                if (!arguments.isEmpty()) {</b>
+<b class="nc"><i>466</i>&nbsp;                    bingo = s.indexOf(&quot; | &quot;) + 3;//message comes after the pipe separator</b>
+<i>467</i>&nbsp;                } else {
+<b class="nc"><i>468</i>&nbsp;                    int bingoIndex = s.indexOf(&quot; &quot;, s.indexOf(&quot; &quot;) + 1);</b>
+<b class="nc"><i>469</i>&nbsp;                    if (bingoIndex == -1) {</b>
+<b class="nc"><i>470</i>&nbsp;                        toReturn.setResponseText(&quot;Failed to add command; there is no command content!&quot;);</b>
+<b class="nc"><i>471</i>&nbsp;                        return toReturn;</b>
+<i>472</i>&nbsp;                    }
+<b class="nc"><i>473</i>&nbsp;                    bingo = bingoIndex + 1;//after second space is the message without arguments</b>
+<i>474</i>&nbsp;                }
+<b class="nc"><i>475</i>&nbsp;                String[] message = s.substring(bingo).split(&quot;]&quot;);</b>
+<b class="nc"><i>476</i>&nbsp;                Command c = new Command(name, message);</b>
+<b class="nc"><i>477</i>&nbsp;                if (!arguments.isEmpty()) c.addArguments(arguments.toArray(new String[arguments.size()]));</b>
+<b class="nc"><i>478</i>&nbsp;                if (GUIMain.commandSet.add(c)) {</b>
+<b class="nc"><i>479</i>&nbsp;                    toReturn.wasSuccessful();</b>
+<b class="nc"><i>480</i>&nbsp;                    toReturn.setResponseText(&quot;Successfully added command \&quot;!&quot; + name + &quot;\&quot;&quot;);</b>
+<i>481</i>&nbsp;                }
+<b class="nc"><i>482</i>&nbsp;            } catch (Exception e) {</b>
+<b class="nc"><i>483</i>&nbsp;                toReturn.setResponseText(&quot;Failed to add command due to Exception: &quot; + e.getMessage());</b>
+<b class="nc"><i>484</i>&nbsp;            }</b>
+<i>485</i>&nbsp;        }
+<b class="nc"><i>486</i>&nbsp;        return toReturn;</b>
+<i>487</i>&nbsp;    }
+<i>488</i>&nbsp;
+<i>489</i>&nbsp;    /**
+<i>490</i>&nbsp;     * Removes a command from the command map.
+<i>491</i>&nbsp;     *
+<i>492</i>&nbsp;     * @param key The !command trigger, or key.
+<i>493</i>&nbsp;     * @return true if removed, else false
+<i>494</i>&nbsp;     */
+<i>495</i>&nbsp;    public static Response removeCommands(String key) {
+<b class="nc"><i>496</i>&nbsp;        Response toReturn = new Response();</b>
+<b class="nc"><i>497</i>&nbsp;        if (GUIMain.commandSet != null &amp;&amp; key != null) {</b>
+<b class="nc"><i>498</i>&nbsp;            Command c = getCommand(key);</b>
+<b class="nc"><i>499</i>&nbsp;            if (c != null) {</b>
+<b class="nc"><i>500</i>&nbsp;                if (GUIMain.commandSet.remove(c)) {</b>
+<b class="nc"><i>501</i>&nbsp;                    toReturn.wasSuccessful();</b>
+<b class="nc"><i>502</i>&nbsp;                    toReturn.setResponseText(&quot;Successfully removed command \&quot;&quot; + key + &quot;\&quot;&quot;);</b>
+<i>503</i>&nbsp;                }
+<i>504</i>&nbsp;            } else {
+<b class="nc"><i>505</i>&nbsp;                toReturn.setResponseText(&quot;Failed to remove command, &quot; + key + &quot; does not exist!&quot;);</b>
+<i>506</i>&nbsp;            }
+<i>507</i>&nbsp;        }
+<b class="nc"><i>508</i>&nbsp;        return toReturn;</b>
+<i>509</i>&nbsp;    }
+<i>510</i>&nbsp;
+<i>511</i>&nbsp;    /**
+<i>512</i>&nbsp;     * Tests to see if the tab of the given index is selected.
+<i>513</i>&nbsp;     *
+<i>514</i>&nbsp;     * @param tabIndex The index of the chat pane.
+<i>515</i>&nbsp;     * @return True if the t, else false.
+<i>516</i>&nbsp;     */
+<i>517</i>&nbsp;    public static boolean isTabSelected(int tabIndex) {
+<b class="nc"><i>518</i>&nbsp;        return !GUIMain.chatPanes.isEmpty() &amp;&amp; GUIMain.channelPane.getSelectedIndex() == tabIndex;</b>
+<i>519</i>&nbsp;    }
+<i>520</i>&nbsp;
+<i>521</i>&nbsp;    /**
+<i>522</i>&nbsp;     * Checks to see if a chat pane tab of a given name is visible.
+<i>523</i>&nbsp;     *
+<i>524</i>&nbsp;     * @param name The name of the chat pane.
+<i>525</i>&nbsp;     * @return True if the tab is visible in the TabbedPane, else false.
+<i>526</i>&nbsp;     */
+<i>527</i>&nbsp;    public static boolean isTabVisible(String name) {
+<b class="nc"><i>528</i>&nbsp;        if (!GUIMain.chatPanes.isEmpty()) {</b>
+<b class="nc"><i>529</i>&nbsp;            Set&lt;String&gt; keys = GUIMain.chatPanes.keySet();</b>
+<b class="nc"><i>530</i>&nbsp;            for (String s : keys) {</b>
+<b class="nc"><i>531</i>&nbsp;                ChatPane cp = GUIMain.getChatPane(s);</b>
+<b class="nc"><i>532</i>&nbsp;                if (cp.getChannel().equalsIgnoreCase(name)) {</b>
+<b class="nc"><i>533</i>&nbsp;                    return cp.isTabVisible();</b>
+<i>534</i>&nbsp;                }
+<b class="nc"><i>535</i>&nbsp;            }</b>
+<i>536</i>&nbsp;        }
+<b class="nc"><i>537</i>&nbsp;        return false;</b>
+<i>538</i>&nbsp;    }
+<i>539</i>&nbsp;
+<i>540</i>&nbsp;    /**
+<i>541</i>&nbsp;     * Gets a chat pane of the given index.
+<i>542</i>&nbsp;     *
+<i>543</i>&nbsp;     * @param index The index of the tab.
+<i>544</i>&nbsp;     * @return The chat pane if it exists on the index, or null.
+<i>545</i>&nbsp;     */
+<i>546</i>&nbsp;    public static ChatPane getChatPane(int index) {
+<b class="nc"><i>547</i>&nbsp;        if (GUIMain.chatPanes != null &amp;&amp; !GUIMain.chatPanes.isEmpty()) {</b>
+<b class="nc"><i>548</i>&nbsp;            Set&lt;String&gt; keys = GUIMain.chatPanes.keySet();</b>
+<b class="nc"><i>549</i>&nbsp;            for (String s : keys) {</b>
+<b class="nc"><i>550</i>&nbsp;                ChatPane cp = GUIMain.getChatPane(s);</b>
+<b class="nc"><i>551</i>&nbsp;                if (cp.isTabVisible() &amp;&amp; cp.getIndex() == index) return cp;</b>
+<b class="nc"><i>552</i>&nbsp;            }</b>
+<i>553</i>&nbsp;        }
+<b class="nc"><i>554</i>&nbsp;        return null;</b>
+<i>555</i>&nbsp;    }
+<i>556</i>&nbsp;
+<i>557</i>&nbsp;    /**
+<i>558</i>&nbsp;     * Gets the combined chat pane of the given index.
+<i>559</i>&nbsp;     *
+<i>560</i>&nbsp;     * @param index The index of the tab.
+<i>561</i>&nbsp;     * @return The combined chat pane if it exists, or null.
+<i>562</i>&nbsp;     */
+<i>563</i>&nbsp;    public static CombinedChatPane getCombinedChatPane(int index) {
+<b class="nc"><i>564</i>&nbsp;        if (!GUIMain.combinedChatPanes.isEmpty()) {</b>
+<b class="nc"><i>565</i>&nbsp;            for (CombinedChatPane cp : GUIMain.combinedChatPanes) {</b>
+<b class="nc"><i>566</i>&nbsp;                if (cp.getIndex() == index) return cp;</b>
+<b class="nc"><i>567</i>&nbsp;            }</b>
+<i>568</i>&nbsp;        }
+<b class="nc"><i>569</i>&nbsp;        return null;</b>
+<i>570</i>&nbsp;    }
+<i>571</i>&nbsp;
+<i>572</i>&nbsp;    /**
+<i>573</i>&nbsp;     * Get the Command from the given !&lt;string&gt; trigger.
+<i>574</i>&nbsp;     *
+<i>575</i>&nbsp;     * @param key The !command trigger, or key.
+<i>576</i>&nbsp;     * @return The Command that the key relates to, or null if there is no command.
+<i>577</i>&nbsp;     */
+<i>578</i>&nbsp;    public static Command getCommand(String key) {
+<b class="nc"><i>579</i>&nbsp;        if (GUIMain.commandSet != null &amp;&amp; key != null) {</b>
+<b class="nc"><i>580</i>&nbsp;            for (Command c1 : GUIMain.commandSet) {</b>
+<b class="nc"><i>581</i>&nbsp;                if (key.equals(c1.getTrigger())) {</b>
+<b class="nc"><i>582</i>&nbsp;                    return c1;</b>
+<i>583</i>&nbsp;                }
+<b class="nc"><i>584</i>&nbsp;            }</b>
+<i>585</i>&nbsp;        }
+<b class="nc"><i>586</i>&nbsp;        return null;</b>
+<i>587</i>&nbsp;    }
+<i>588</i>&nbsp;
+<i>589</i>&nbsp;    /**
+<i>590</i>&nbsp;     * Gets the console command if the user met the trigger and permission of it.
+<i>591</i>&nbsp;     *
+<i>592</i>&nbsp;     * @param key     The name of the command.
+<i>593</i>&nbsp;     * @param channel The channel the user is in.
+<i>594</i>&nbsp;     * @return The console command, or null if the user didn&#39;t meet the requirements.
+<i>595</i>&nbsp;     */
+<i>596</i>&nbsp;    public static ConsoleCommand getConsoleCommand(String key, String channel, User u) {
+<b class="nc"><i>597</i>&nbsp;        String master = Settings.accountManager.getUserAccount().getName();</b>
+<b class="nc"><i>598</i>&nbsp;        if (!channel.contains(master)) return null;</b>
+<b class="nc"><i>599</i>&nbsp;        if (u != null) {</b>
+<b class="nc"><i>600</i>&nbsp;            for (ConsoleCommand c : GUIMain.conCommands) {</b>
+<b class="nc"><i>601</i>&nbsp;                if (key.equalsIgnoreCase(c.getTrigger())) {</b>
+<b class="nc"><i>602</i>&nbsp;                    int conPerm = c.getClassPermission();</b>
+<b class="nc"><i>603</i>&nbsp;                    String[] certainPerms = c.getCertainPermissions();</b>
+<b class="nc"><i>604</i>&nbsp;                    if (conPerm == -1) {</b>
+<b class="nc"><i>605</i>&nbsp;                        if (certainPerms != null) {</b>
+<b class="nc"><i>606</i>&nbsp;                            for (String s : certainPerms) {//specified name permission</b>
+<b class="nc"><i>607</i>&nbsp;                                if (s.equalsIgnoreCase(u.getNick())) {</b>
+<b class="nc"><i>608</i>&nbsp;                                    return c;</b>
+<i>609</i>&nbsp;                                }
+<i>610</i>&nbsp;                            }
+<i>611</i>&nbsp;                        }
+<i>612</i>&nbsp;                    } else {//int class permission
+<b class="nc"><i>613</i>&nbsp;                        if (Permissions.hasAtLeast(Permissions.getUserPermissions(u, channel), conPerm)) {</b>
+<b class="nc"><i>614</i>&nbsp;                            return c;</b>
+<i>615</i>&nbsp;                        }
+<i>616</i>&nbsp;                    }
+<i>617</i>&nbsp;                }
+<b class="nc"><i>618</i>&nbsp;            }</b>
+<i>619</i>&nbsp;        }
+<b class="nc"><i>620</i>&nbsp;        return null;</b>
+<i>621</i>&nbsp;    }
+<i>622</i>&nbsp;
+<i>623</i>&nbsp;    /**
+<i>624</i>&nbsp;     * Checks to see if a given channel is the main Botnak user&#39;s channel.
+<i>625</i>&nbsp;     *
+<i>626</i>&nbsp;     * @param channel The channel to check.
+<i>627</i>&nbsp;     * @return true if indeed the channel, otherwise false.
+<i>628</i>&nbsp;     */
+<i>629</i>&nbsp;    public static boolean isMainChannel(String channel) {
+<b class="nc"><i>630</i>&nbsp;        return Settings.accountManager.getUserAccount() != null &amp;&amp;</b>
+<b class="nc"><i>631</i>&nbsp;                (channel.replaceAll(&quot;#&quot;, &quot;&quot;).equalsIgnoreCase(Settings.accountManager.getUserAccount().getName()));</b>
+<i>632</i>&nbsp;    }
+<i>633</i>&nbsp;
+<i>634</i>&nbsp;    /**
+<i>635</i>&nbsp;     * Gets the String value of the integer permission.
+<i>636</i>&nbsp;     *
+<i>637</i>&nbsp;     * @param permission The permission to get the String representation of.
+<i>638</i>&nbsp;     * @return The String representation of the permission.
+<i>639</i>&nbsp;     */
+<i>640</i>&nbsp;    public static String getPermissionString(int permission) {
+<b class="nc"><i>641</i>&nbsp;        return (permission &gt; 0 ? (permission &gt; 1 ? (permission &gt; 2 ? (permission &gt; 3 ?</b>
+<i>642</i>&nbsp;                &quot;Only the Broadcaster&quot; :
+<i>643</i>&nbsp;                &quot;Only Mods and the Broadcaster&quot;) :
+<i>644</i>&nbsp;                &quot;Donators, Mods, and the Broadcaster&quot;) :
+<i>645</i>&nbsp;                &quot;Subscribers, Donators, Mods, and the Broadcaster&quot;) :
+<i>646</i>&nbsp;                &quot;Everyone&quot;);
+<i>647</i>&nbsp;    }
+<i>648</i>&nbsp;
+<i>649</i>&nbsp;    /**
+<i>650</i>&nbsp;     * Sets the permission of a console command based on the input received.
+<i>651</i>&nbsp;     * &lt;p&gt;
+<i>652</i>&nbsp;     * Ex:
+<i>653</i>&nbsp;     * !setpermission mod 0
+<i>654</i>&nbsp;     * &gt;Everybody can now mod each other
+<i>655</i>&nbsp;     * &lt;p&gt;
+<i>656</i>&nbsp;     * !setpermission mod gocnak,gmansoliver
+<i>657</i>&nbsp;     * &gt;Only Gocnak and Gmansoliver can mod people
+<i>658</i>&nbsp;     * &lt;p&gt;
+<i>659</i>&nbsp;     * etc.
+<i>660</i>&nbsp;     * &lt;p&gt;
+<i>661</i>&nbsp;     * Note: This WILL reset the permissions and /then/ set it to specified.
+<i>662</i>&nbsp;     * If you wish to add another name, you will have to retype the ones already
+<i>663</i>&nbsp;     * allowed!
+<i>664</i>&nbsp;     *
+<i>665</i>&nbsp;     * @param mess The entire message to dissect.
+<i>666</i>&nbsp;     */
+<i>667</i>&nbsp;    public static Response setCommandPermission(String mess) {
+<b class="nc"><i>668</i>&nbsp;        Response toReturn = new Response();</b>
+<b class="nc"><i>669</i>&nbsp;        if (mess == null) {</b>
+<b class="nc"><i>670</i>&nbsp;            toReturn.setResponseText(&quot;Failed to set command permission, message is null!&quot;);</b>
+<b class="nc"><i>671</i>&nbsp;            return toReturn;</b>
+<i>672</i>&nbsp;        }
+<b class="nc"><i>673</i>&nbsp;        String[] split = mess.split(&quot; &quot;);</b>
+<b class="nc"><i>674</i>&nbsp;        String trigger = split[1];</b>
+<b class="nc"><i>675</i>&nbsp;        for (ConsoleCommand c : GUIMain.conCommands) {</b>
+<b class="nc"><i>676</i>&nbsp;            if (trigger.equalsIgnoreCase(c.getTrigger())) {</b>
+<i>677</i>&nbsp;                int classPerm;
+<b class="nc"><i>678</i>&nbsp;                String[] certainPerm = null;</b>
+<i>679</i>&nbsp;                try {
+<b class="nc"><i>680</i>&nbsp;                    classPerm = Integer.parseInt(split[2]);</b>
+<b class="nc"><i>681</i>&nbsp;                } catch (Exception e) {</b>
+<b class="nc"><i>682</i>&nbsp;                    classPerm = -1;</b>
+<b class="nc"><i>683</i>&nbsp;                    certainPerm = split[2].split(&quot;,&quot;);</b>
+<b class="nc"><i>684</i>&nbsp;                }</b>
+<b class="nc"><i>685</i>&nbsp;                c.setCertainPermission(certainPerm);</b>
+<b class="nc"><i>686</i>&nbsp;                c.setClassPermission(classPerm);</b>
+<b class="nc"><i>687</i>&nbsp;                toReturn.wasSuccessful();</b>
+<b class="nc"><i>688</i>&nbsp;                toReturn.setResponseText(&quot;Successfully set the command permission for &quot; + trigger + &quot; !&quot;);</b>
+<b class="nc"><i>689</i>&nbsp;                break;</b>
+<i>690</i>&nbsp;            }
+<b class="nc"><i>691</i>&nbsp;        }</b>
+<b class="nc"><i>692</i>&nbsp;        return toReturn;</b>
+<i>693</i>&nbsp;    }
+<i>694</i>&nbsp;
+<i>695</i>&nbsp;    /**
+<i>696</i>&nbsp;     * Gets the SimpleAttributeSet with the correct color for the message.
+<i>697</i>&nbsp;     * Cycles through all of the keywords, so the first keyword it matches is the color.
+<i>698</i>&nbsp;     *
+<i>699</i>&nbsp;     * @param message The message to dissect.
+<i>700</i>&nbsp;     * @return The set with the correct color.
+<i>701</i>&nbsp;     */
+<i>702</i>&nbsp;    public static SimpleAttributeSet getSetForKeyword(String message) {
+<b class="nc"><i>703</i>&nbsp;        SimpleAttributeSet setToRet = new SimpleAttributeSet(GUIMain.norm);</b>
+<b class="nc"><i>704</i>&nbsp;        Set&lt;String&gt; keys = GUIMain.keywordMap.keySet();</b>
+<i>705</i>&nbsp;        //case doesnt matter
+<b class="nc"><i>706</i>&nbsp;        keys.stream().filter(</b>
+<b class="nc"><i>707</i>&nbsp;                s -&gt; message.toLowerCase().contains(s.toLowerCase())).forEach(</b>
+<b class="nc"><i>708</i>&nbsp;                s -&gt; StyleConstants.setForeground(setToRet, GUIMain.keywordMap.get(s)));</b>
+<b class="nc"><i>709</i>&nbsp;        return setToRet;</b>
+<i>710</i>&nbsp;    }
+<i>711</i>&nbsp;
+<i>712</i>&nbsp;    /**
+<i>713</i>&nbsp;     * Checks to see if the message contains a keyword.
+<i>714</i>&nbsp;     *
+<i>715</i>&nbsp;     * @param message The message to check.
+<i>716</i>&nbsp;     * @return True if the message contains a keyword, else false.
+<i>717</i>&nbsp;     */
+<i>718</i>&nbsp;    public static boolean mentionsKeyword(String message) {
+<b class="nc"><i>719</i>&nbsp;        Set&lt;String&gt; keys = GUIMain.keywordMap.keySet();</b>
+<b class="nc"><i>720</i>&nbsp;        for (String s : keys) {</b>
+<b class="nc"><i>721</i>&nbsp;            if (message.toLowerCase().contains(s.toLowerCase())) {//case doesnt matter</b>
+<b class="nc"><i>722</i>&nbsp;                return true;</b>
+<i>723</i>&nbsp;            }
+<b class="nc"><i>724</i>&nbsp;        }</b>
+<b class="nc"><i>725</i>&nbsp;        return false;</b>
+<i>726</i>&nbsp;    }
+<i>727</i>&nbsp;
+<i>728</i>&nbsp;    /**
+<i>729</i>&nbsp;     * Handles the adding/removing of a keyword and the colors.
+<i>730</i>&nbsp;     *
+<i>731</i>&nbsp;     * @param mess The entire message to dissect.
+<i>732</i>&nbsp;     */
+<i>733</i>&nbsp;    public static Response handleKeyword(String mess) {
+<b class="nc"><i>734</i>&nbsp;        Response toReturn = new Response();</b>
+<b class="nc"><i>735</i>&nbsp;        if (mess == null || &quot;&quot;.equals(mess)) {</b>
+<b class="nc"><i>736</i>&nbsp;            toReturn.setResponseText(&quot;Failed to handle keyword, the message is null!&quot;);</b>
+<b class="nc"><i>737</i>&nbsp;            return toReturn;</b>
+<i>738</i>&nbsp;        }
+<b class="nc"><i>739</i>&nbsp;        String[] split = mess.split(&quot; &quot;);</b>
+<b class="nc"><i>740</i>&nbsp;        if (split.length &gt; 1) {</b>
+<b class="nc"><i>741</i>&nbsp;            String trigger = split[0];</b>
+<b class="nc"><i>742</i>&nbsp;            String word = split[1];</b>
+<b class="nc"><i>743</i>&nbsp;            if (trigger.equalsIgnoreCase(&quot;addkeyword&quot;)) {</b>
+<b class="nc"><i>744</i>&nbsp;                String color = mess.substring(mess.indexOf(&quot; &quot;, mess.indexOf(&quot; &quot;) + 1) + 1);</b>
+<b class="nc"><i>745</i>&nbsp;                Color c = getColor(color, null);</b>
+<b class="nc"><i>746</i>&nbsp;                if (!c.equals(Color.white)) {</b>
+<b class="nc"><i>747</i>&nbsp;                    GUIMain.keywordMap.put(word, c);</b>
+<b class="nc"><i>748</i>&nbsp;                    toReturn.wasSuccessful();</b>
+<b class="nc"><i>749</i>&nbsp;                    toReturn.setResponseText(&quot;Successfully added keyword \&quot;&quot; + word + &quot;\&quot; !&quot;);</b>
+<i>750</i>&nbsp;                } else {
+<b class="nc"><i>751</i>&nbsp;                    toReturn.setResponseText(&quot;Failed to add keyword, the color cannot be white!&quot;);</b>
+<i>752</i>&nbsp;                }
+<b class="nc"><i>753</i>&nbsp;            } else if (trigger.equalsIgnoreCase(&quot;removekeyword&quot;)) {</b>
+<b class="nc"><i>754</i>&nbsp;                Set&lt;String&gt; keys = GUIMain.keywordMap.keySet();</b>
+<b class="nc"><i>755</i>&nbsp;                for (String s : keys) {</b>
+<b class="nc"><i>756</i>&nbsp;                    if (s.equalsIgnoreCase(word)) {</b>
+<b class="nc"><i>757</i>&nbsp;                        GUIMain.keywordMap.remove(s);</b>
+<b class="nc"><i>758</i>&nbsp;                        toReturn.wasSuccessful();</b>
+<b class="nc"><i>759</i>&nbsp;                        toReturn.setResponseText(&quot;Successfully removed keyword \&quot;&quot; + word + &quot;\&quot; !&quot;);</b>
+<b class="nc"><i>760</i>&nbsp;                        return toReturn;</b>
+<i>761</i>&nbsp;                    }
+<b class="nc"><i>762</i>&nbsp;                }</b>
+<b class="nc"><i>763</i>&nbsp;                toReturn.setResponseText(&quot;Failed to remove keyword, \&quot;&quot; + word + &quot;\&quot; does not exist!&quot;);</b>
+<i>764</i>&nbsp;            }
+<b class="nc"><i>765</i>&nbsp;        } else {</b>
+<b class="nc"><i>766</i>&nbsp;            toReturn.setResponseText(&quot;Failed to handle keyword, the keyword is null!&quot;);</b>
+<i>767</i>&nbsp;        }
+<b class="nc"><i>768</i>&nbsp;        return toReturn;</b>
+<i>769</i>&nbsp;    }
+<i>770</i>&nbsp;
+<i>771</i>&nbsp;    /**
+<i>772</i>&nbsp;     * Generates a pseudo-random color that works for Botnak.
+<i>773</i>&nbsp;     *
+<i>774</i>&nbsp;     * @return The randomly generated color.
+<i>775</i>&nbsp;     */
+<i>776</i>&nbsp;    public static Color getRandomColor() {
+<b class="nc"><i>777</i>&nbsp;        return new Color(random(100, 256), random(100, 256), random(100, 256));</b>
+<i>778</i>&nbsp;    }
+<i>779</i>&nbsp;
+<i>780</i>&nbsp;    /**
+<i>781</i>&nbsp;     * Gets the color from the given string. Supports hexadecimal, RGB, and color
+<i>782</i>&nbsp;     * name.
+<i>783</i>&nbsp;     *
+<i>784</i>&nbsp;     * @param message  The message to dissect.
+<i>785</i>&nbsp;     * @param fallback The fallback color to set to if the parsing failed. Defaults to white if null.
+<i>786</i>&nbsp;     * @return The parsed color from the message, or the fallback color if parsing failed.
+<i>787</i>&nbsp;     */
+<i>788</i>&nbsp;    public static Color getColor(String message, Color fallback) {
+<b class="nc"><i>789</i>&nbsp;        Color toRet = (fallback == null ? new Color(255, 255, 255) : fallback);</b>
+<b class="nc"><i>790</i>&nbsp;        String[] split = message.split(&quot; &quot;);</b>
+<b class="nc"><i>791</i>&nbsp;        if (split.length &gt; 1) { //R G B</b>
+<i>792</i>&nbsp;            int R;
+<i>793</i>&nbsp;            int G;
+<i>794</i>&nbsp;            int B;
+<i>795</i>&nbsp;            try {
+<b class="nc"><i>796</i>&nbsp;                R = Integer.parseInt(split[0]);</b>
+<b class="nc"><i>797</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>798</i>&nbsp;                R = 0;</b>
+<b class="nc"><i>799</i>&nbsp;            }</b>
+<i>800</i>&nbsp;            try {
+<b class="nc"><i>801</i>&nbsp;                G = Integer.parseInt(split[1]);</b>
+<b class="nc"><i>802</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>803</i>&nbsp;                G = 0;</b>
+<b class="nc"><i>804</i>&nbsp;            }</b>
+<i>805</i>&nbsp;            try {
+<b class="nc"><i>806</i>&nbsp;                B = Integer.parseInt(split[2]);</b>
+<b class="nc"><i>807</i>&nbsp;            } catch (NumberFormatException e) {</b>
+<b class="nc"><i>808</i>&nbsp;                B = 0;</b>
+<b class="nc"><i>809</i>&nbsp;            }</b>
+<b class="nc"><i>810</i>&nbsp;            if (checkInts(R, G, B)) toRet = new Color(R, G, B);</b>
+<b class="nc"><i>811</i>&nbsp;        } else {</b>
+<i>812</i>&nbsp;            try {
+<i>813</i>&nbsp;                //this is for hexadecimal
+<b class="nc"><i>814</i>&nbsp;                Color toCheck = Color.decode(split[0]);</b>
+<b class="nc"><i>815</i>&nbsp;                if (checkColor(toCheck)) toRet = toCheck;</b>
+<b class="nc"><i>816</i>&nbsp;            } catch (Exception e) {</b>
+<i>817</i>&nbsp;                //didn&#39;t parse it right, so it may be a name of a color
+<b class="nc"><i>818</i>&nbsp;                for (NamedColor nc : Constants.namedColors) {</b>
+<b class="nc"><i>819</i>&nbsp;                    if (split[0].equalsIgnoreCase(nc.getName())) {</b>
+<b class="nc"><i>820</i>&nbsp;                        toRet = nc.getColor();</b>
+<b class="nc"><i>821</i>&nbsp;                        break;</b>
+<i>822</i>&nbsp;                    }
+<i>823</i>&nbsp;                }
+<b class="nc"><i>824</i>&nbsp;                if (split[0].equalsIgnoreCase(&quot;random&quot;)) {</b>
+<b class="nc"><i>825</i>&nbsp;                    toRet = getRandomColor();</b>
+<i>826</i>&nbsp;                }
+<b class="nc"><i>827</i>&nbsp;            }</b>
+<i>828</i>&nbsp;        }
+<b class="nc"><i>829</i>&nbsp;        return toRet;</b>
+<i>830</i>&nbsp;    }
+<i>831</i>&nbsp;
+<i>832</i>&nbsp;
+<i>833</i>&nbsp;    /**
+<i>834</i>&nbsp;     * Sets a color to the user based on either a R G B value in their message
+<i>835</i>&nbsp;     * or a standard color from the Color class.
+<i>836</i>&nbsp;     *
+<i>837</i>&nbsp;     * @param user User to change the color for.
+<i>838</i>&nbsp;     * @param mess Their message.
+<i>839</i>&nbsp;     */
+<i>840</i>&nbsp;    public static Response handleColor(String user, String mess, Color old) {
+<b class="nc"><i>841</i>&nbsp;        Response toReturn = new Response();</b>
+<b class="nc"><i>842</i>&nbsp;        if (user != null &amp;&amp; mess != null) {</b>
+<i>843</i>&nbsp;            //mess = &quot;!setcol r g b&quot; or &quot;!setcol #cd4fd5&quot;
+<i>844</i>&nbsp;            //so let&#39;s send just the second part.
+<b class="nc"><i>845</i>&nbsp;            Color newColor = getColor(mess.substring(mess.indexOf(&quot; &quot;) + 1), old);</b>
+<b class="nc"><i>846</i>&nbsp;            if (!newColor.equals(old)) {</b>
+<b class="nc"><i>847</i>&nbsp;                GUIMain.userColMap.put(user, newColor);</b>
+<b class="nc"><i>848</i>&nbsp;                toReturn.setResponseText(&quot;Successfully set color for user &quot; + user + &quot; !&quot;);</b>
+<b class="nc"><i>849</i>&nbsp;                toReturn.wasSuccessful();</b>
+<i>850</i>&nbsp;            } else {
+<b class="nc"><i>851</i>&nbsp;                toReturn.setResponseText(&quot;Failed to update color, it may be too dark!&quot;);</b>
+<i>852</i>&nbsp;            }
+<b class="nc"><i>853</i>&nbsp;        } else {</b>
+<b class="nc"><i>854</i>&nbsp;            toReturn.setResponseText(&quot;Failed to update user color, user or message is null!&quot;);</b>
+<i>855</i>&nbsp;        }
+<b class="nc"><i>856</i>&nbsp;        return toReturn;</b>
+<i>857</i>&nbsp;    }
+<i>858</i>&nbsp;
+<i>859</i>&nbsp;    /**
+<i>860</i>&nbsp;     * Gets a color from the given user, whether it be
+<i>861</i>&nbsp;     * 1. From the manually-set User Color map.
+<i>862</i>&nbsp;     * 2. From their Twitch color set on the website.
+<i>863</i>&nbsp;     * 3. The generated color from their name&#39;s hash code.
+<i>864</i>&nbsp;     *
+<i>865</i>&nbsp;     * @param u The user to get the color of.
+<i>866</i>&nbsp;     * @return The color of the user.
+<i>867</i>&nbsp;     */
+<i>868</i>&nbsp;    public static Color getColorFromUser(User u) {
+<i>869</i>&nbsp;        Color c;
+<b class="nc"><i>870</i>&nbsp;        String name = u.getNick();</b>
+<b class="nc"><i>871</i>&nbsp;        if (u.getColor() != null) {</b>
+<b class="nc"><i>872</i>&nbsp;            if (GUIMain.userColMap.containsKey(name)) {</b>
+<b class="nc"><i>873</i>&nbsp;                c = GUIMain.userColMap.get(name);</b>
+<i>874</i>&nbsp;            } else {
+<b class="nc"><i>875</i>&nbsp;                c = u.getColor();</b>
+<b class="nc"><i>876</i>&nbsp;                if (!Utils.checkColor(c)) {</b>
+<b class="nc"><i>877</i>&nbsp;                    c = Utils.getColorFromHashcode(name.hashCode());</b>
+<i>878</i>&nbsp;                }
+<i>879</i>&nbsp;            }
+<i>880</i>&nbsp;        } else {//temporarily assign their color as randomly generated
+<b class="nc"><i>881</i>&nbsp;            c = Utils.getColorFromHashcode(name.hashCode());</b>
+<i>882</i>&nbsp;        }
+<b class="nc"><i>883</i>&nbsp;        return c;</b>
+<i>884</i>&nbsp;    }
+<i>885</i>&nbsp;
+<i>886</i>&nbsp;    /**
+<i>887</i>&nbsp;     * Checks a color to see if it will show up in botnak.
+<i>888</i>&nbsp;     *
+<i>889</i>&nbsp;     * @param c The color to check.
+<i>890</i>&nbsp;     * @return True if the color is not null, and shows up in botnak.
+<i>891</i>&nbsp;     */
+<i>892</i>&nbsp;    public static boolean checkColor(Color c) {
+<b class="nc"><i>893</i>&nbsp;        return c != null &amp;&amp; checkInts(c.getRed(), c.getGreen(), c.getBlue());</b>
+<i>894</i>&nbsp;    }
+<i>895</i>&nbsp;
+<i>896</i>&nbsp;    /**
+<i>897</i>&nbsp;     * Checks if the red, green, and blue show up in Botnak,
+<i>898</i>&nbsp;     * using the standard Luminance formula.
+<i>899</i>&nbsp;     *
+<i>900</i>&nbsp;     * @param r Red value
+<i>901</i>&nbsp;     * @param g Green value
+<i>902</i>&nbsp;     * @param b Blue value
+<i>903</i>&nbsp;     * @return true if the Integers meet the specification.
+<i>904</i>&nbsp;     */
+<i>905</i>&nbsp;    public static boolean checkInts(int r, int g, int b) {
+<b class="nc"><i>906</i>&nbsp;        double luma = (0.3 * (double) r) + (0.6 * (double) g) + (0.1 * (double) b);</b>
+<b class="nc"><i>907</i>&nbsp;        return luma &gt; (double) 35;</b>
+<i>908</i>&nbsp;    }
+<i>909</i>&nbsp;
+<i>910</i>&nbsp;    /**
+<i>911</i>&nbsp;     * Checks to see if the regex is valid.
+<i>912</i>&nbsp;     *
+<i>913</i>&nbsp;     * @param toCheck The regex to check.
+<i>914</i>&nbsp;     * @return &lt;tt&gt;true&lt;/tt&gt; if valid regex.
+<i>915</i>&nbsp;     */
+<i>916</i>&nbsp;    public static boolean checkRegex(String toCheck) {
+<i>917</i>&nbsp;        try {
+<b class="nc"><i>918</i>&nbsp;            Pattern.compile(toCheck);</b>
+<b class="nc"><i>919</i>&nbsp;            return true;</b>
+<b class="nc"><i>920</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>921</i>&nbsp;            GUIMain.log(e);</b>
+<b class="nc"><i>922</i>&nbsp;            return false;</b>
+<i>923</i>&nbsp;        }
+<i>924</i>&nbsp;    }
+<i>925</i>&nbsp;
+<i>926</i>&nbsp;    /**
+<i>927</i>&nbsp;     * Checks the file name to see if Windows will store it properly.
+<i>928</i>&nbsp;     *
+<i>929</i>&nbsp;     * @param toCheck The name to check.
+<i>930</i>&nbsp;     * @return true if the name is invalid.
+<i>931</i>&nbsp;     */
+<i>932</i>&nbsp;    public static boolean checkName(String toCheck) {
+<b class="nc"><i>933</i>&nbsp;        Matcher m = Constants.fileExclPattern.matcher(toCheck);</b>
+<b class="nc"><i>934</i>&nbsp;        return m.find();</b>
+<i>935</i>&nbsp;    }
+<i>936</i>&nbsp;
+<i>937</i>&nbsp;    /**
+<i>938</i>&nbsp;     * Parses a buffered reader and adds what is read to the provided StringBuilder.
+<i>939</i>&nbsp;     *
+<i>940</i>&nbsp;     * @param toRead  The stream to read.
+<i>941</i>&nbsp;     * @param builder The builder to add to.
+<i>942</i>&nbsp;     */
+<i>943</i>&nbsp;    public static void parseBufferedReader(BufferedReader toRead, StringBuilder builder, boolean includeNewLine) {
+<b class="nc"><i>944</i>&nbsp;        try (BufferedReader toReadr = toRead) {</b>
+<i>945</i>&nbsp;            String line;
+<b class="nc"><i>946</i>&nbsp;            while ((line = toReadr.readLine()) != null) {</b>
+<b class="nc"><i>947</i>&nbsp;                builder.append(line);</b>
+<b class="nc"><i>948</i>&nbsp;                if (includeNewLine) builder.append(&quot;\n&quot;);</b>
+<i>949</i>&nbsp;            }
+<b class="nc"><i>950</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>951</i>&nbsp;            GUIMain.log(&quot;Failed to read buffered reader due to exception: &quot;);</b>
+<b class="nc"><i>952</i>&nbsp;            GUIMain.log(e);</b>
+<b class="nc"><i>953</i>&nbsp;        }</b>
+<i>954</i>&nbsp;    }
+<i>955</i>&nbsp;
+<i>956</i>&nbsp;    /**
+<i>957</i>&nbsp;     * One to many methods required creating a BufferedReader just to read one line from it.
+<i>958</i>&nbsp;     * This method does that and saves the effort of writing the code elsewhere.
+<i>959</i>&nbsp;     *
+<i>960</i>&nbsp;     * @param input The InputStream to read from.
+<i>961</i>&nbsp;     * @return The string read from the input.
+<i>962</i>&nbsp;     */
+<i>963</i>&nbsp;    public static String createAndParseBufferedReader(InputStream input) {
+<b class="nc"><i>964</i>&nbsp;        String toReturn = &quot;&quot;;</b>
+<b class="nc"><i>965</i>&nbsp;        try (InputStreamReader inputStreamReader = new InputStreamReader(input, Charset.forName(&quot;UTF-8&quot;));</b>
+<b class="nc"><i>966</i>&nbsp;             BufferedReader br = new BufferedReader(inputStreamReader)) {</b>
+<b class="nc"><i>967</i>&nbsp;            StringBuilder sb = new StringBuilder();</b>
+<b class="nc"><i>968</i>&nbsp;            parseBufferedReader(br, sb, false);</b>
+<b class="nc"><i>969</i>&nbsp;            toReturn = sb.toString();</b>
+<b class="nc"><i>970</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>971</i>&nbsp;            GUIMain.log(&quot;Could not parse buffered reader due to exception: &quot;);</b>
+<b class="nc"><i>972</i>&nbsp;            GUIMain.log(e);</b>
+<b class="nc"><i>973</i>&nbsp;        }</b>
+<b class="nc"><i>974</i>&nbsp;        return toReturn;</b>
+<i>975</i>&nbsp;    }
+<i>976</i>&nbsp;
+<i>977</i>&nbsp;    /**
+<i>978</i>&nbsp;     * Override for the #createAndParseBufferedReader(InputStream) method for just simple URLs.
+<i>979</i>&nbsp;     * @param URL The URL to try to open.
+<i>980</i>&nbsp;     * @return The parsed buffered reader if successful, otherwise an empty string.
+<i>981</i>&nbsp;     */
+<i>982</i>&nbsp;    public static String createAndParseBufferedReader(String URL)
+<i>983</i>&nbsp;    {
+<i>984</i>&nbsp;        try
+<i>985</i>&nbsp;        {
+<b class="nc"><i>986</i>&nbsp;            return createAndParseBufferedReader(new URL(URL).openStream());</b>
+<b class="nc"><i>987</i>&nbsp;        } catch (Exception e)</b>
+<i>988</i>&nbsp;        {
+<b class="nc"><i>989</i>&nbsp;            GUIMain.log(&quot;Could not parse buffered reader due to exception: &quot;);</b>
+<b class="nc"><i>990</i>&nbsp;            GUIMain.log(e);</b>
+<i>991</i>&nbsp;        }
+<b class="nc"><i>992</i>&nbsp;        return &quot;&quot;;</b>
+<i>993</i>&nbsp;    }
+<i>994</i>&nbsp;
+<i>995</i>&nbsp;    /**
+<i>996</i>&nbsp;     * Opens a web page in the default web browser on the system.
+<i>997</i>&nbsp;     *
+<i>998</i>&nbsp;     * @param URL The URL to open.
+<i>999</i>&nbsp;     */
+<i>1000</i>&nbsp;    public static void openWebPage(String URL) {
+<i>1001</i>&nbsp;        try {
+<b class="nc"><i>1002</i>&nbsp;            Desktop desktop = Desktop.getDesktop();</b>
+<b class="nc"><i>1003</i>&nbsp;            URI uri = new URL(URL).toURI();</b>
+<b class="nc"><i>1004</i>&nbsp;            desktop.browse(uri);</b>
+<b class="nc"><i>1005</i>&nbsp;        } catch (Exception ev) {</b>
+<b class="nc"><i>1006</i>&nbsp;            GUIMain.log(&quot;Failed openWebPage due to exception: &quot;);</b>
+<b class="nc"><i>1007</i>&nbsp;            GUIMain.log(ev);</b>
+<b class="nc"><i>1008</i>&nbsp;        }</b>
+<i>1009</i>&nbsp;    }
+<i>1010</i>&nbsp;
+<i>1011</i>&nbsp;    /**
+<i>1012</i>&nbsp;     * Caps a number between two given numbers.
+<i>1013</i>&nbsp;     *
+<i>1014</i>&nbsp;     * @param numLesser The lower-bound (inclusive) number to compare against.
+<i>1015</i>&nbsp;     * @param numHigher The higher-bound (inclusive) number to compare against.
+<i>1016</i>&nbsp;     * @param toCompare The number to check and perhaps cap.
+<i>1017</i>&nbsp;     * @param &lt;E&gt;       Generics, used for making one method for all number types.
+<i>1018</i>&nbsp;     * @return If the number is within the two bounds, the number is returned.
+<i>1019</i>&nbsp;     * Otherwise, return the supplied number bound that the number is closer to.
+<i>1020</i>&nbsp;     */
+<i>1021</i>&nbsp;    public static &lt;E extends Number&gt; E capNumber(E numLesser, E numHigher, E toCompare) {
+<b class="nc"><i>1022</i>&nbsp;        E toReturn = toCompare;</b>
+<b class="nc"><i>1023</i>&nbsp;        if (toCompare.floatValue() &gt; numHigher.floatValue()) toReturn = numHigher;//floats are the most precise here</b>
+<b class="nc"><i>1024</i>&nbsp;        else if (toCompare.floatValue() &lt; numLesser.floatValue()) toReturn = numLesser;</b>
+<b class="nc"><i>1025</i>&nbsp;        return toReturn;</b>
+<i>1026</i>&nbsp;    }
+<i>1027</i>&nbsp;
+<i>1028</i>&nbsp;    /**
+<i>1029</i>&nbsp;     * Parses Twitch&#39;s tags for an IRC message and spits them out into a HashMap.
+<i>1030</i>&nbsp;     *
+<i>1031</i>&nbsp;     * @param line The line to parse.
+<i>1032</i>&nbsp;     * @return A HashMap full of Key and Value pairs for the tags.
+<i>1033</i>&nbsp;     */
+<i>1034</i>&nbsp;    public static HashMap&lt;String, String&gt; parseTagsToMap(String line)
+<i>1035</i>&nbsp;    {
+<b class="nc"><i>1036</i>&nbsp;        HashMap&lt;String, String&gt; toReturn = new HashMap&lt;&gt;();</b>
+<b class="nc"><i>1037</i>&nbsp;        if (line != null)</b>
+<i>1038</i>&nbsp;        {
+<b class="nc"><i>1039</i>&nbsp;            line = line.substring(1);</b>
+<b class="nc"><i>1040</i>&nbsp;            String[] parts = line.split(&quot;;&quot;);</b>
+<b class="nc"><i>1041</i>&nbsp;            for (String part : parts)</b>
+<i>1042</i>&nbsp;            {
+<b class="nc"><i>1043</i>&nbsp;                String[] objectPair = part.split(&quot;=&quot;);</b>
+<i>1044</i>&nbsp;                //Don&#39;t add this key/pair value if there is no value.
+<b class="nc"><i>1045</i>&nbsp;                if (objectPair.length &lt;= 1) continue;</b>
+<b class="nc"><i>1046</i>&nbsp;                toReturn.put(objectPair[0], objectPair[1].replaceAll(&quot;\\\\s&quot;, &quot; &quot;));</b>
+<i>1047</i>&nbsp;            }
+<i>1048</i>&nbsp;        }
+<b class="nc"><i>1049</i>&nbsp;        return toReturn;</b>
+<i>1050</i>&nbsp;    }
+<i>1051</i>&nbsp;
+<i>1052</i>&nbsp;
+<i>1053</i>&nbsp;    public static void populateComboBox(JComboBox&lt;String&gt; channelsBox)
+<i>1054</i>&nbsp;    {
+<b class="nc"><i>1055</i>&nbsp;        channelsBox.removeAllItems();</b>
+<b class="nc"><i>1056</i>&nbsp;        if (GUIMain.bot == null || GUIMain.bot.getBot() == null) return;</b>
+<i>1057</i>&nbsp;
+<b class="nc"><i>1058</i>&nbsp;        String[] channels = GUIMain.bot.getBot().getChannels();</b>
+<i>1059</i>&nbsp;
+<b class="nc"><i>1060</i>&nbsp;        for (String s : channels)</b>
+<b class="nc"><i>1061</i>&nbsp;            channelsBox.addItem(s.replaceAll(&quot;#&quot;, &quot;&quot;));</b>
+<i>1062</i>&nbsp;
+<b class="nc"><i>1063</i>&nbsp;        channelsBox.setSelectedItem(GUIMain.getCurrentPane().getChannel());</b>
+<i>1064</i>&nbsp;    }
+<i>1065</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-10-05 00:12</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: AbstractFileSave</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">util.settings</a> ]
+</div>
+
+<h1>Coverage Summary for Class: AbstractFileSave (util.settings)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AbstractFileSave</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    33.3%
+  </span>
+  <span class="absValue">
+    (1/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    6.2%
+  </span>
+  <span class="absValue">
+    (1/ 16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package util.settings;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import gui.forms.GUIMain;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.*;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;/**
+<i>8</i>&nbsp; * Created by Nick on 8/31/2015.
+<i>9</i>&nbsp; * &lt;p&gt;
+<i>10</i>&nbsp; * This class is created for all the other Settings in the Settings class,
+<i>11</i>&nbsp; * where the saving and loading are standardized.
+<i>12</i>&nbsp; */
+<b class="fc"><i>13</i>&nbsp;public abstract class AbstractFileSave {</b>
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    public abstract void handleLineLoad(String line);
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    public abstract void handleLineSave(PrintWriter pw);
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    public abstract File getFile();
+<i>20</i>&nbsp;
+<i>21</i>&nbsp;    public void save() {
+<b class="nc"><i>22</i>&nbsp;        try (PrintWriter pw = new PrintWriter(getFile())) {</b>
+<b class="nc"><i>23</i>&nbsp;            handleLineSave(pw);</b>
+<b class="nc"><i>24</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>25</i>&nbsp;            GUIMain.log(e);</b>
+<b class="nc"><i>26</i>&nbsp;        }</b>
+<b class="nc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public void load() {
+<b class="nc"><i>30</i>&nbsp;        try (FileInputStream fis = new FileInputStream(getFile());</b>
+<b class="nc"><i>31</i>&nbsp;             InputStreamReader isr = new InputStreamReader(fis);</b>
+<b class="nc"><i>32</i>&nbsp;             BufferedReader br = new BufferedReader(isr)) {</b>
+<i>33</i>&nbsp;            String line;
+<b class="nc"><i>34</i>&nbsp;            while ((line = br.readLine()) != null) {</b>
+<b class="nc"><i>35</i>&nbsp;                handleLineLoad(line);</b>
+<i>36</i>&nbsp;            }
+<b class="nc"><i>37</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>38</i>&nbsp;            GUIMain.log(e);</b>
+<b class="nc"><i>39</i>&nbsp;        }</b>
+<b class="nc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-10-05 00:30</div>
+</div>
+</body>
+</html>

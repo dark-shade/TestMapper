@@ -1,0 +1,8 @@
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run started[0m[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mSoundEngineTest[0m.[36mgetLastDonationSound[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mSoundEngineTest[0m.[36mgetLastDonationSound[0m finished, took 0.016 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mSoundEngineTest[0m.[36mhandleSound[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mSoundEngineTest[0m.[36mhandleSound[0m finished, took 0.0 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mSoundEngineTest[0m.[36mgetLastSubSound[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mSoundEngineTest[0m.[36mgetLastSubSound[0m finished, took 0.0 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 3 total, 0.116s[0m[0m

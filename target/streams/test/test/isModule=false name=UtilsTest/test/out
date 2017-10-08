@@ -1,10 +1,14 @@
 [0m[[0m[0minfo[0m] [0m[0m[34mTest run started[0m[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mUtilsTest[0m.[36mgetExtension[0m started[0m
-[0m[[0m[0mdebug[0m] [0m[0mTest [33mUtilsTest[0m.[36mgetExtension[0m finished, took 0.015 sec[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mUtilsTest[0m.[36mgetExtension[0m finished, took 0.0 sec[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mUtilsTest[0m.[36mcheckColor[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mUtilsTest[0m.[36mcheckColor[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mUtilsTest[0m.[36mcheckInts[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mUtilsTest[0m.[36mcheckInts[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mUtilsTest[0m.[36msetExtension[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mUtilsTest[0m.[36msetExtension[0m finished, took 0.0 sec[0m
 [0m[[0m[0minfo[0m] [0m[0mTest [33mUtilsTest[0m.[36mremoveExt[0m started[0m
 [0m[[0m[0mdebug[0m] [0m[0mTest [33mUtilsTest[0m.[36mremoveExt[0m finished, took 0.0 sec[0m
-[0m[[0m[0minfo[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 4 total, 0.053s[0m[0m
+[0m[[0m[0minfo[0m] [0m[0mTest [33mUtilsTest[0m.[36mgetColor[0m started[0m
+[0m[[0m[0mdebug[0m] [0m[0mTest [33mUtilsTest[0m.[36mgetColor[0m finished, took 0.0 sec[0m
+[0m[[0m[0minfo[0m] [0m[0m[34mTest run finished: [0m[34m0 failed[0m[34m, [0m[34m0 ignored[0m[34m, 6 total, 0.016s[0m[0m
