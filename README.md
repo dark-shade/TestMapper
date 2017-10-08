@@ -1,5 +1,12 @@
-Cloud Computing HW 2
+CS 441 - Cloud Computing HW 2
 ======
+Submitted By:
+
+Sankul Rawat <srawat5@uic.edu>
+
+Graduate student
+
+UIN: 653416288
 
 Link to the application repository which is being used:
 [Botnak repo](https://github.com/Gocnak/Botnak)
