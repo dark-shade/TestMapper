@@ -1,47 +1,41 @@
-Botnak
+Cloud Computing HW 2
 ======
 
-Botnak is a Java-based IRC chat client with bot capabilities and a focus on Twitch.tv streams.
+Link to the application repository which is being used:
+[Botnak repo](https://github.com/Gocnak/Botnak)
 
-Botnak 2 Episode 2 has a while to go before being 100% polished and released! You can track its progress in the [Episode 2 Milestone tab](https://github.com/Gocnak/Botnak/milestones).
-
-# Download
-The latest (pre-compiled) build can be found in the [releases tab](https://github.com/Gocnak/Botnak/releases).
-
-Keep in mind, this does not mean that Botnak is a final product quite yet. The fact Episode 2 is not completed yet implies there will be multiple changes, some of which may require additional research to have Botnak work completely. It is only recommended to download this if you wish to test Botnak as-is and report bugs.
-
-# Issues
-Speaking of reporting bugs, if you come across an issue, simply open a New Issue in the [issues tab](https://github.com/Gocnak/Botnak/issues/new)! I am using that tab to track progress of Episode 2, so an issue there would be the best place to put it. If you don't wish to publicly report the issue, go ahead and [PM me on twitch](http://www.twitch.tv/message/compose?to=gocnak)!
+# Description
+I use junit tests to test the above mentioned application. 
+Sbt automates the process of managing dependencies and is used to build and run these tests. 
+A code coverage report is produced in html format using sbt-jacoco plugin.
+Then these html code coverage reports are parsed into text file format using jSoup.
+Then I use my implementation of maximum coverage to find out which tests to run in 
+order to cover maximum lines of codes. After this, the data is fed to Mapreduce job where
+it coverts the data of type <t1, <l1,l2,...,ln>> into <l1, <t1,t2,....tn>>. 
+The execution of Mapreduce is also performed on Amazon EMR.
 
 # Requirements
-You will need the latest version of Java 8 to run Botnak. [Download it here.](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
+You will need the latest version of Java 8 to run tests. [Download it here.](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
 
-A full example list of commands and such can be found [here](http://bit.ly/1366RwM).
+You will also require intellij ide. [Download it here.](https://www.jetbrains.com/idea/download/#section=windows)
 
-# Credits
+Junit and other dependencies will be automatically added using gradle and sbt.
 
-[JSON Library](https://github.com/douglascrockford/JSON-java) for making API parsing much easier
+# How to run the project
+1. Copy the repo clone "https://sankul@bitbucket.org/sankul/sankul_rawat_hw2.git".
+2. Open intelliJ.
+3. In intellij, open project using version control -> git.
+4. Follow on screen instructions to clone and import project.
+5. Once the project is open, open terminal window inside intellij.
+6. To run using sbt, execute following command `sbt clean compile test` in terminal, this will compile and run the tests.
+7. `sbt jacoco` command produces the code coverage reports.    
 
-[JTattoo](http://www.jtattoo.net/) for making Botnak look pretty
-
-[Scalr API](https://github.com/thebuzzmedia/imgscalr/) for Image Scaling
-
-[Pircbot API](http://www.jibble.org/pircbot.php) for giving me a good start to IRC bots
-
-Collaborators that help out with the project:
-
-Dr Kegel
-
-YaLTeR
-
-Kinamkrindar
-
-Fragmer
-
-TDuva  
-
-Jbzdarkid
-
-Chrisazy
-
-and anyone else reporting issues about this monstrosity of code!
+# Location of related items
+1. The junit tests are present on path `Botnak/src/test/java/` .
+2. build.sbt file is present in the root directory of the project.
+3. Code coverage reports (in HTML format) are contained in `Botnak/TestReports` directory.
+4. Code coverage reports (in text format) are contained in `Botnak/input` directory.
+5. The output of maximum coverage implementation is present in `Botnak/input` directory 
+(it overwrites the existing text file).
+6. The code for HTML format code coverage report parsing, maximum coverage implementation, 
+and Mapreduce is present in `Botnak/mapreduce/src` directory.
