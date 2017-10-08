@@ -43,7 +43,9 @@ Junit and other dependencies will be automatically added using gradle and sbt.
 and Mapreduce is present in `Botnak/mapreduce/src` directory.
 
 #Implementation on Amazon EMR
-[Youtube video displaying the deployment and execution on Amazon EMR]()
+[Youtube video displaying the deployment and execution on Amazon EMR](https://youtu.be/9PxlI-Z-Qtw)
+
+[Youtube video displaying the final results of execution and comparison between max cover and normal outputs](https://youtu.be/u_eVzI5V-d0)
 
 ###Citation
 [How to Deploy Custom JAR on Amazon EMR](https://www.youtube.com/watch?v=qyRxq8YwZcU)
