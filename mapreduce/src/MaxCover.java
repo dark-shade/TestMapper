@@ -60,6 +60,7 @@ public class MaxCover {
             //System.out.println("Enter number of tests to be considered:");
             //int noOfTestToConsider = sc.nextInt();
 
+            //taking 3 test cases for max cover by default
             int noOfTestToConsider = 3;
 
             // check if user inserted a valid value
