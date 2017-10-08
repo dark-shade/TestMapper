@@ -14,6 +14,8 @@ order to cover maximum lines of codes. After this, the data is fed to Mapreduce 
 it coverts the data of type <t1, <l1,l2,...,ln>> into <l1, <t1,t2,....tn>>. 
 The execution of Mapreduce is also performed on Amazon EMR.
 
+![picture](images/flow.jpg)
+
 # Requirements
 You will need the latest version of Java 8 to run tests. [Download it here.](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html)
 
@@ -39,3 +41,26 @@ Junit and other dependencies will be automatically added using gradle and sbt.
 (it overwrites the existing text file).
 6. The code for HTML format code coverage report parsing, maximum coverage implementation, 
 and Mapreduce is present in `Botnak/mapreduce/src` directory.
+
+#Implementation on Amazon EMR
+[Youtube video displaying the deployment and execution on Amazon EMR]()
+
+#Explanation of Maximum Coverage Problem Implementation [Extra Credit Work]
+I use a polynomial time approximation greedy algorithm which a special case of 
+maximization of submodular functions with a cardinality constraint.
+
+Algorithm: Greedy Maximum Coverage
+
+1. Input: Set of sets U, k
+2. for i=1:::k do 
+3.    pick the set that covers the maximum number of uncovered elements 
+4. end
+
+The implementation is present in `MaxCover.java`, at location `Botnak/mapreduce/src/MaxCover`.
+
+###Citations
+[Wikipedia](https://en.wikipedia.org/wiki/Maximum_coverage_problem)
+
+[Design and Analysis of Algorithms, DUKE University Lectures](https://www.cs.duke.edu/courses/fall13/compsci530/notes/lec16.pdf)
+
+[Set Cover Problem (Greedy Approximate Algorithm)](http://www.geeksforgeeks.org/set-cover-problem-set-1-greedy-approximate-algorithm/)
