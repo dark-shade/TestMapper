@@ -74,3 +74,10 @@ The implementation is present in `MaxCover.java`, at location `sankul_rawat_hw2/
 [Design and Analysis of Algorithms, DUKE University Lectures](https://www.cs.duke.edu/courses/fall13/compsci530/notes/lec16.pdf)
 
 [Set Cover Problem (Greedy Approximate Algorithm)](http://www.geeksforgeeks.org/set-cover-problem-set-1-greedy-approximate-algorithm/)
+
+###Limitations 
+The limitations of the implementation are that it only checks a very precise scope of the application. 
+As only unit testing can be performed using junit, it does not help in black box testing and only covers 
+some scope in white box testing. Mapreduce cannot be fully automated using sbt, and the jacoco plugin 
+does not provide facility of code coverage report in text file and lines covered for individual test hence 
+a custom made parser was implemented which is an overhead to the application. 
